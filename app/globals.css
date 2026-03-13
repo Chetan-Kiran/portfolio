@@ -1,0 +1,37 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: #050505;
+    --foreground: #ffffff;
+  }
+  
+  body {
+    color: var(--foreground);
+    background-color: var(--background);
+    background-image: radial-gradient(circle at 50% 0%, rgba(59, 130, 246, 0.15), transparent 50%),
+                      linear-gradient(to bottom, #050505, #0a0a0a);
+    background-attachment: fixed;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer utilities {
+  .glass-card {
+    @apply bg-glass-light backdrop-blur-md border border-glass-border shadow-[0_4px_30px_rgba(0,0,0,0.1)];
+  }
+  
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .gradient-text {
+    @apply text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600;
+  }
+}
