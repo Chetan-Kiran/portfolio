@@ -3,6 +3,8 @@ import About from "@/components/About";
 import Projects from "@/components/Projects";
 import TechStack from "@/components/TechStack";
 import ContactCTA from "@/components/ContactCTA";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 import { ArrowDown, Mail, FolderGit2 } from "lucide-react";
 
 // Lazy load the 3D component for performance
@@ -12,6 +14,9 @@ export default function Home() {
   return (
     <main className="min-h-screen selection:bg-primary/30 relative">
       <div className="fixed inset-0 bg-[url('/noise.png')] opacity-[0.03] pointer-events-none z-50"></div>
+
+      {/* Navigation */}
+      <Navbar />
 
       {/* SECTION 1 - Hero Section */}
       <section className="min-h-[100vh] relative flex items-center justify-center pt-20 pb-12 overflow-hidden">
@@ -67,6 +72,9 @@ export default function Home() {
 
       {/* SECTION 5 - Contact CTA */}
       <ContactCTA />
+
+      {/* Footer */}
+      <Footer />
       
     </main>
   );

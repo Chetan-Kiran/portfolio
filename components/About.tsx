@@ -23,10 +23,17 @@ export default function About() {
                 transition={{ type: "spring", stiffness: 300, damping: 20 }}
                 className="w-full h-full rounded-2xl glass-card overflow-hidden border-2 border-primary/20 p-2 shadow-[0_0_30px_rgba(59,130,246,0.2)] group-hover:shadow-[0_0_50px_rgba(59,130,246,0.4)]"
               >
-                <div className="w-full h-full rounded-xl bg-gradient-to-br from-gray-800 to-black relative overflow-hidden flex items-center justify-center">
-                   {/* Placeholder for Profile Picture */}
-                   <div className="absolute inset-0 bg-primary/10 animate-pulse"></div>
-                   <span className="text-gray-400 text-lg font-medium tracking-widest z-10">PROFILE IMAGE</span>
+                <div className="w-full h-full rounded-xl bg-gradient-to-br from-gray-800 to-black relative overflow-hidden">
+                   <Image
+                     src="/chetan-profile.jpg"
+                     alt="Chetan Kiran - Software Developer"
+                     fill
+                     className="object-cover object-top"
+                     sizes="(max-width: 768px) 288px, 384px"
+                     priority
+                   />
+                   {/* Subtle gradient overlay at bottom */}
+                   <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
                 </div>
               </motion.div>
             </div>

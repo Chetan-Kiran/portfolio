@@ -29,7 +29,7 @@ export default function ContactCTA() {
             </p>
 
             <motion.a
-              href="mailto:contact@example.com"
+              href="mailto:chetankiranstd@gmail.com"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="inline-flex items-center gap-3 bg-white text-black px-8 py-4 rounded-full font-bold text-lg hover:bg-gray-200 transition-colors shadow-[0_0_20px_rgba(255,255,255,0.3)] hover:shadow-[0_0_30px_rgba(255,255,255,0.5)]"
@@ -40,7 +40,9 @@ export default function ContactCTA() {
             <div className="mt-16 flex items-center justify-center gap-6">
               <motion.a 
                 whileHover={{ y: -3, color: '#fff' }}
-                href="#"
+                href="https://github.com/Chetan-Kiran"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-gray-500 hover:text-white transition-colors p-3 bg-white/5 rounded-full border border-white/10"
               >
                 <Github className="w-6 h-6" />
@@ -48,7 +50,9 @@ export default function ContactCTA() {
               </motion.a>
               <motion.a 
                 whileHover={{ y: -3, color: '#0077b5' }}
-                href="#"
+                href="https://in.linkedin.com/in/chetan-kiran-b7263731b"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-gray-500 hover:text-[#0077b5] transition-colors p-3 bg-white/5 rounded-full border border-white/10"
               >
                 <Linkedin className="w-6 h-6" />
@@ -56,7 +60,7 @@ export default function ContactCTA() {
               </motion.a>
               <motion.a 
                 whileHover={{ y: -3, color: '#ea4335' }}
-                href="mailto:contact@example.com"
+                href="mailto:chetankiranstd@gmail.com"
                 className="text-gray-500 hover:text-[#ea4335] transition-colors p-3 bg-white/5 rounded-full border border-white/10"
               >
                 <Mail className="w-6 h-6" />

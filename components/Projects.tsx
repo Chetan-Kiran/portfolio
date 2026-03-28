@@ -6,26 +6,41 @@ import Image from "next/image";
 
 const projects = [
   {
-    title: "AI Development Agent",
-    description: "An intelligent multi-agent system built using Next.js and Python. Automates coding tasks through LLM chains, with a custom tool calling framework.",
-    tech: ["Next.js", "Python", "LangChain", "Tailwind"],
-    github: "#",
-    live: "#",
+    title: "GFG Leaderboard Scraper",
+    description:
+      "A web scraping tool for GeeksforGeeks that lets users track and visualize their daily submission activity with interactive charts. Input your GFG ID and get beautiful data visualizations of your coding progress.",
+    tech: ["JavaScript", "React", "Node.js", "Chart.js", "Web Scraping"],
+    github: "https://github.com/Chetan-Kiran/GFG_WEB-Scraper",
+    live: "https://chetan-gfg-scraper.netlify.app/",
+    image: "/gfg-scraper.png",
   },
   {
-    title: "E-Commerce Microservices",
-    description: "Scalable backend architecture using Java Spring Boot. Features event-driven communication, Redis caching, and PostgreSQL databases.",
-    tech: ["Java", "Spring Boot", "Kafka", "Docker"],
-    github: "#",
-    live: "#",
+    title: "AI Codebase Navigator",
+    description:
+      "An intelligent multi-agent system designed to explore and understand complex codebases. Automates documentation, code analysis, and feature implementation using LLM chains.",
+    tech: ["Next.js", "Python", "LangChain", "OpenAI"],
+    github: "https://github.com/Chetan-Kiran/AI-Codebase-Navigator",
+    live: "https://ai-codebase.netlify.app/",
+    image: "/ai-navigator.png",
   },
   {
-    title: "Machine Learning Classifier",
-    description: "A deep learning model for image classification deployed as a scalable API. Built with PyTorch and served using FastAPI for real-time predictions.",
-    tech: ["Python", "PyTorch", "FastAPI", "React"],
-    github: "#",
+    title: "MCP Calculator Server",
+    description:
+      "A robust Model Context Protocol (MCP) server implementation for complex mathematical computations. Engineered with a modular plugin architecture for seamless AI assistant integration.",
+    tech: ["Python", "MCP", "FastAPI", "Docker"],
+    github: "https://github.com/Chetan-Kiran/mcp-calculator-server",
     live: "#",
-  }
+    image: "/mcp-server.png",
+  },
+  {
+    title: "NLP Text Summarizer",
+    description:
+      "A high-performance natural language processing tool that generates concise summaries from large text datasets. Built with advanced transformer models for context-aware distillation.",
+    tech: ["Python", "PyTorch", "Transformers", "Streamlit"],
+    github: "https://github.com/Chetan-Kiran/nlp-summarizer",
+    live: "#",
+    image: "/nlp-summarizer.png",
+  },
 ];
 
 export default function Projects() {
@@ -47,7 +62,7 @@ export default function Projects() {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {projects.map((project, idx) => (
             <motion.div
               key={idx}
@@ -58,12 +73,15 @@ export default function Projects() {
               whileHover={{ y: -10, rotateX: 2, rotateY: -2 }}
               className="glass-card rounded-2xl overflow-hidden group perspective"
             >
-              <div className="h-48 w-full bg-gradient-to-br from-gray-800 to-[#0a0a0a] relative flex items-center justify-center border-b border-glass-border overflow-hidden">
-                {/* Image placeholder with subtle zoom on hover */}
-                <div className="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                <div className="w-full h-full transform group-hover:scale-105 transition-transform duration-700 bg-gray-900/50 flex items-center justify-center text-gray-700 font-bold uppercase tracking-widest">
-                  PROJECT PREVIEW
-                </div>
+              <div className="h-48 w-full relative border-b border-glass-border overflow-hidden">
+                <Image 
+                  src={project.image} 
+                  alt={project.title}
+                  fill
+                  className="object-cover transform group-hover:scale-105 transition-transform duration-700 opacity-80 group-hover:opacity-100"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] to-transparent opacity-60"></div>
+                <div className="absolute inset-0 bg-primary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
               </div>
 
               <div className="p-6 relative">
@@ -82,7 +100,9 @@ export default function Projects() {
                   <motion.a 
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.9 }}
-                    href={project.github} 
+                    href={project.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="text-gray-400 hover:text-white transition-colors"
                   >
                     <Github className="w-5 h-5" />
@@ -90,7 +110,9 @@ export default function Projects() {
                   <motion.a 
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.9 }}
-                    href={project.live} 
+                    href={project.live}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="text-gray-400 hover:text-white transition-colors"
                   >
                     <ExternalLink className="w-5 h-5" />

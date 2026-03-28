@@ -5,8 +5,15 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Chetan Kiran | Developer Portfolio",
-  description: "Software Developer & Machine Learning Enthusiast",
+  title: "Chetan Kiran | Software Developer & ML Enthusiast",
+  description: "Portfolio of Chetan Kiran — Software Developer specializing in Java, Machine Learning, and building intelligent systems, developer tools, and scalable architectures.",
+  keywords: ["Chetan Kiran", "Software Developer", "Machine Learning", "Java", "Portfolio", "Full Stack Developer"],
+  authors: [{ name: "Chetan Kiran" }],
+  openGraph: {
+    title: "Chetan Kiran | Software Developer & ML Enthusiast",
+    description: "I build intelligent systems, developer tools and scalable software that transforms ideas into reality.",
+    type: "website",
+  },
 };
 
 export default function RootLayout({
