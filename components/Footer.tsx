@@ -25,7 +25,7 @@ export default function Footer() {
             {["About", "Projects", "Contact"].map((link) => (
               <a
                 key={link}
-                href={`#${link.toLowerCase()}`}
+                href={link === "Projects" ? "/projects" : `/#${link.toLowerCase()}`}
                 className="text-sm text-gray-500 hover:text-white transition-colors"
               >
                 {link}

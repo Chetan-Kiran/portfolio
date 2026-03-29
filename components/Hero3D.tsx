@@ -3,17 +3,29 @@
 import { useRef, useMemo } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Points, PointMaterial } from "@react-three/drei";
-import * as random from "maath/random/dist/maath-random.esm";
 import * as THREE from "three";
 
 function ParticleSphere(props: any) {
   const ref = useRef<THREE.Points>(null!);
-  const sphere = useMemo(() => random.inSphere(new Float32Array(5000), { radius: 1.5 }), []);
+  const sphere = useMemo(() => {
+    const positions = new Float32Array(2500 * 3); // Slightly denser for "not too dusty but bright"
+    for (let i = 0; i < 2500; i++) {
+       const u = Math.random();
+       const v = Math.random();
+       const theta = 2 * Math.PI * u;
+       const phi = Math.acos(2 * v - 1);
+       const r = 1.6; // Slightly larger sphere
+       positions[i * 3] = r * Math.sin(phi) * Math.cos(theta);
+       positions[i * 3 + 1] = r * Math.sin(phi) * Math.sin(theta);
+       positions[i * 3 + 2] = r * Math.cos(phi);
+    }
+    return positions;
+  }, []);
 
   useFrame((state, delta) => {
     if (ref.current) {
-      ref.current.rotation.x -= delta / 10;
-      ref.current.rotation.y -= delta / 15;
+      ref.current.rotation.x -= delta / 12;
+      ref.current.rotation.y -= delta / 18;
     }
   });
 
@@ -22,10 +34,11 @@ function ParticleSphere(props: any) {
       <Points ref={ref} positions={sphere as Float32Array} stride={3} frustumCulled={false} {...props}>
         <PointMaterial
           transparent
-          color="#3b82f6"
-          size={0.015}
+          color="#fbbf24" // Golden dust
+          size={0.018} // Slightly larger for brightness
           sizeAttenuation={true}
           depthWrite={false}
+          opacity={0.8} // Much brighter
         />
       </Points>
     </group>

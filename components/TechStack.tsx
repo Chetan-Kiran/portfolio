@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Coffee, Brain, Database, FileCode2, TerminalSquare, GitBranch } from "lucide-react";
+import TechGlobe from "./TechGlobe";
 
 const technologies = [
   { name: "Java", icon: Coffee, color: "text-[#b07219]" },
@@ -34,28 +35,21 @@ export default function TechStack() {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
-          {technologies.map((tech, idx) => {
-            const Icon = tech.icon;
-            return (
-              <motion.div
-                key={tech.name}
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5, delay: idx * 0.1 }}
-                viewport={{ once: true }}
-                whileHover={{ y: -5, scale: 1.05 }}
-                className="glass-card rounded-2xl p-6 flex flex-col items-center justify-center gap-4 group cursor-pointer"
-              >
-                <div className={`p-4 rounded-xl bg-white/5 border border-white/10 group-hover:bg-white/10 transition-colors ${tech.color} group-hover:drop-shadow-[0_0_15px_rgba(255,255,255,0.2)]`}>
-                  <Icon className="w-8 h-8 md:w-10 md:h-10" strokeWidth={1.5} />
-                </div>
-                <span className="font-medium text-gray-300 group-hover:text-white transition-colors text-sm md:text-base">
-                  {tech.name}
-                </span>
-              </motion.div>
-            );
-          })}
+        <motion.div
+           initial={{ opacity: 0 }}
+           whileInView={{ opacity: 1 }}
+           className="relative z-20"
+        >
+          <TechGlobe />
+        </motion.div>
+
+        {/* Small tech pill labels for SEO/Accessibility */}
+        <div className="flex flex-wrap justify-center gap-3 mt-8">
+           {technologies.map((tech) => (
+              <span key={tech.name} className="px-4 py-1.5 bg-white/5 border border-white/10 rounded-full text-xs font-medium text-gray-400">
+                 {tech.name}
+              </span>
+           ))}
         </div>
       </div>
     </section>

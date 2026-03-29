@@ -21,11 +21,11 @@ export default function ContactCTA() {
 
           <div className="relative z-10">
             <h2 className="text-4xl md:text-6xl font-black mb-6 tracking-tight">
-              Let's build something <br />
+              Let&apos;s build something <br />
               <span className="gradient-text font-serif italic text-5xl md:text-7xl">amazing.</span>
             </h2>
             <p className="text-gray-400 text-lg mb-10 max-w-lg mx-auto">
-              Looking for a robust backend architecture or a cutting-edge intelligent system? I'm always open to discussing new projects and opportunities.
+              Looking for a robust backend architecture or a cutting-edge intelligent system? I&apos;m always open to discussing new projects and opportunities.
             </p>
 
             <motion.a
