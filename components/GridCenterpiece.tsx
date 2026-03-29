@@ -23,7 +23,7 @@ function Hyperspace() {
     return [pos, vel];
   }, []);
 
-  useFrame((state, delta) => {
+  useFrame((state, _delta) => {
     const posAttr = meshRef.current.geometry.attributes.position;
     for (let i = 0; i < count; i++) {
       let z = posAttr.getZ(i);

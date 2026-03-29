@@ -1,0 +1,10 @@
+# Allow all search engines to crawl the whole site
+User-agent: *
+Allow: /
+
+# Block specific folders you don't want in search results
+Disallow: /private/
+Disallow: /node_modules/
+
+# Tell Google where your sitemap is (helps with faster indexing)
+Sitemap: https://www.chetan-portfolio.com/sitemap.xml

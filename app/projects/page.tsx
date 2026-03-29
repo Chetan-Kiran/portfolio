@@ -5,7 +5,7 @@ import { projects } from "@/data/projects";
 
 const InteractiveProjectCard = dynamic(() => import("@/components/InteractiveProjectCard"), { ssr: false });
 const GithubContribution = dynamic(() => import("@/components/GithubContribution"), { ssr: false });
-const ProjectTimeline = dynamic(() => import("@/components/ProjectTimeline"), { ssr: false });
+// const ProjectTimeline = dynamic(() => import("@/components/ProjectTimeline"), { ssr: false });
 const GridCenterpiece = dynamic(() => import("@/components/GridCenterpiece"), { ssr: false });
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";

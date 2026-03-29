@@ -1,8 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Github, ExternalLink, ArrowRight } from "lucide-react";
-import Image from "next/image";
+import { ArrowRight } from "lucide-react";
+// import Image from "next/image";
 import { projects } from "@/data/projects";
 import InteractiveProjectCard from "./InteractiveProjectCard";
 
