@@ -1,8 +1,6 @@
-"use client";
-
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
-// import Image from "next/image";
 import { projects } from "@/data/projects";
 import InteractiveProjectCard from "./InteractiveProjectCard";
 
@@ -47,12 +45,12 @@ export default function Projects() {
           whileInView={{ opacity: 1 }}
           className="flex justify-center"
         >
-          <a 
-            href="/projects" 
+          <Link 
+            to="/projects" 
             className="group inline-flex items-center gap-2 px-8 py-4 rounded-full bg-white/5 hover:bg-white/10 text-white font-bold transition-all border border-white/10"
           >
             See All Projects <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-          </a>
+          </Link>
         </motion.div>
       </div>
     </section>

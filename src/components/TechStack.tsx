@@ -1,5 +1,3 @@
-"use client";
-
 import { motion } from "framer-motion";
 import { Coffee, Brain, Database, FileCode2, TerminalSquare, GitBranch } from "lucide-react";
 import TechGlobe from "./TechGlobe";

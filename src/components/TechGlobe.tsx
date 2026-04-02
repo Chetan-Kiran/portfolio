@@ -1,5 +1,3 @@
-"use client";
-
 import React, { useRef, useMemo, Suspense } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { Text, Float, Icosahedron, Points, PointMaterial, Sphere, ContactShadows, PresentationControls } from '@react-three/drei';

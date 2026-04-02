@@ -1,5 +1,3 @@
-"use client";
-
 import { useRef, useMemo } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Points, PointMaterial } from "@react-three/drei";
@@ -22,7 +20,7 @@ function ParticleSphere(props: any) {
     return positions;
   }, []);
 
-  useFrame((state, delta) => {
+  useFrame((_state, delta) => {
     if (ref.current) {
       ref.current.rotation.x -= delta / 12;
       ref.current.rotation.y -= delta / 18;
@@ -48,7 +46,7 @@ function ParticleSphere(props: any) {
 export default function Hero3D() {
   return (
     <div className="w-full h-[400px] md:h-[600px] relative pointer-events-auto cursor-grab active:cursor-grabbing">
-      <Canvas camera={{ position: [0, 0, 3] }}>
+      <Canvas camera={{ position: [0, 0, 3] }} dpr={[1, 2]}>
         <ambientLight intensity={0.5} />
         <ParticleSphere />
       </Canvas>

@@ -1,6 +1,5 @@
-"use client";
-
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import { Github, Linkedin, Mail, Heart } from "lucide-react";
 
 export default function Footer() {
@@ -12,9 +11,9 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           {/* Branding */}
           <div className="flex flex-col items-center md:items-start gap-2">
-            <a href="#" className="text-xl font-bold tracking-tight">
+            <Link to="/" className="text-xl font-bold tracking-tight">
               <span className="gradient-text">Chetan Kiran</span>
-            </a>
+            </Link>
             <p className="text-sm text-gray-500">
               Software Developer &amp; ML Enthusiast
             </p>
@@ -23,13 +22,23 @@ export default function Footer() {
           {/* Quick Links */}
           <div className="flex items-center gap-6">
             {["About", "Projects", "Contact"].map((link) => (
-              <a
-                key={link}
-                href={link === "Projects" ? "/projects" : `/#${link.toLowerCase()}`}
-                className="text-sm text-gray-500 hover:text-white transition-colors"
-              >
-                {link}
-              </a>
+              link === "Projects" ? (
+                <Link
+                  key={link}
+                  to="/projects"
+                  className="text-sm text-gray-500 hover:text-white transition-colors"
+                >
+                  {link}
+                </Link>
+              ) : (
+                <a
+                  key={link}
+                  href={`/#${link.toLowerCase()}`}
+                  className="text-sm text-gray-500 hover:text-white transition-colors"
+                >
+                  {link}
+                </a>
+              )
             ))}
           </div>
 
@@ -70,7 +79,7 @@ export default function Footer() {
         <div className="mt-8 pt-6 border-t border-glass-border text-center">
           <p className="text-xs text-gray-600 flex items-center justify-center gap-1">
             © {currentYear} Chetan Kiran. Built with{" "}
-            <Heart className="w-3 h-3 text-red-500 fill-red-500" /> using Next.js & TypeScript.
+            <Heart className="w-3 h-3 text-red-500 fill-red-500" /> using Vite &amp; TypeScript.
           </p>
         </div>
       </div>

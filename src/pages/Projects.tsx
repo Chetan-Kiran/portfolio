@@ -1,19 +1,22 @@
-"use client";
-
-import dynamic from "next/dynamic";
+import React, { Suspense, lazy } from "react";
 import { projects } from "@/data/projects";
-
-const InteractiveProjectCard = dynamic(() => import("@/components/InteractiveProjectCard"), { ssr: false });
-const GithubContribution = dynamic(() => import("@/components/GithubContribution"), { ssr: false });
-// const ProjectTimeline = dynamic(() => import("@/components/ProjectTimeline"), { ssr: false });
-const GridCenterpiece = dynamic(() => import("@/components/GridCenterpiece"), { ssr: false });
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { motion } from "framer-motion";
 
+// Lazy load components for performance
+const InteractiveProjectCard = lazy(() => import("@/components/InteractiveProjectCard"));
+const GithubContribution = lazy(() => import("@/components/GithubContribution"));
+const GridCenterpiece = lazy(() => import("@/components/GridCenterpiece"));
+
+// Generic Skeleton for project card
+const CardSkeleton = () => (
+  <div className="w-full h-full bg-background/40 animate-pulse rounded-2xl border border-glass-border"></div>
+);
+
 export default function ProjectsPage() {
   return (
-    <main className="min-h-screen bg-background relative overflow-hidden">
+    <main className="min-h-screen bg-black text-white relative overflow-hidden">
       <div className="fixed inset-0 pointer-events-none z-50 opacity-[0.03]" style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")` }}></div>
       
       {/* Background Glows */}
@@ -41,7 +44,9 @@ export default function ProjectsPage() {
 
           {/* Github Calendar */}
           <div className="mb-24">
-            <GithubContribution />
+            <Suspense fallback={<CardSkeleton />}>
+              <GithubContribution />
+            </Suspense>
           </div>
 
           {/* Bento Grid */}
@@ -53,7 +58,9 @@ export default function ProjectsPage() {
               transition={{ duration: 0.6 }}
               className="md:col-span-2 md:row-span-2 h-full"
             >
-              <InteractiveProjectCard project={projects[0]} />
+              <Suspense fallback={<CardSkeleton />}>
+                <InteractiveProjectCard project={projects[0] as any} />
+              </Suspense>
             </motion.div>
 
             {/* Row 1 Right: AI Navigator (Wide 2x1) */}
@@ -63,7 +70,9 @@ export default function ProjectsPage() {
               transition={{ duration: 0.6, delay: 0.1 }}
               className="md:col-span-2 md:row-span-1 h-full"
             >
-              <InteractiveProjectCard project={projects[1]} />
+              <Suspense fallback={<CardSkeleton />}>
+                <InteractiveProjectCard project={projects[1] as any} />
+              </Suspense>
             </motion.div>
 
             {/* Row 2 Middle: Centerpiece (1x1) */}
@@ -71,9 +80,11 @@ export default function ProjectsPage() {
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="md:col-span-1 md:row-span-1 h-full"
+              className="md:col-span-1 md:row-span-1 h-full overflow-hidden rounded-[2rem]"
             >
-              <GridCenterpiece />
+              <Suspense fallback={<CardSkeleton />}>
+                <GridCenterpiece />
+              </Suspense>
             </motion.div>
 
             {/* Row 2 Right: MCP Calculator (1x1) */}
@@ -83,7 +94,9 @@ export default function ProjectsPage() {
               transition={{ duration: 0.6, delay: 0.3 }}
               className="md:col-span-1 md:row-span-1 h-full"
             >
-              <InteractiveProjectCard project={projects[2]} />
+              <Suspense fallback={<CardSkeleton />}>
+                <InteractiveProjectCard project={projects[2] as any} />
+              </Suspense>
             </motion.div>
 
             {/* Row 3: NLP Summarizer (Tall 1x2) and Future Space */}
@@ -93,7 +106,9 @@ export default function ProjectsPage() {
               transition={{ duration: 0.6, delay: 0.4 }}
               className="md:col-span-1 md:row-span-2 h-full"
             >
-              <InteractiveProjectCard project={projects[3]} />
+              <Suspense fallback={<CardSkeleton />}>
+                <InteractiveProjectCard project={projects[3] as any} />
+              </Suspense>
             </motion.div>
 
             {/* Filler for Grid Balance */}

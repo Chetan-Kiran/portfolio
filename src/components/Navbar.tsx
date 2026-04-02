@@ -1,25 +1,37 @@
-"use client";
-
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 
 const navLinks = [
-  { label: "About", href: "/#about" },
-  { label: "Projects", href: "/projects" },
-  { label: "Tech Stack", href: "/#tech" },
-  { label: "Contact", href: "/#contact" },
+  { label: "About", href: "/#about", isHash: true },
+  { label: "Projects", href: "/projects", isHash: false },
+  { label: "Tech Stack", href: "/#tech", isHash: true },
+  { label: "Contact", href: "/#contact", isHash: true },
 ];
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  // Handle hash scroll after navigation
+  useEffect(() => {
+    if (location.hash) {
+      const element = document.getElementById(location.hash.substring(1));
+      if (element) {
+        setTimeout(() => {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }, 100);
+      }
+    }
+  }, [location]);
 
   return (
     <motion.nav
@@ -33,22 +45,33 @@ export default function Navbar() {
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-        <a href="#" className="text-xl font-bold tracking-tight">
+        <Link to="/" className="text-xl font-bold tracking-tight">
           <span className="gradient-text">CK</span>
           <span className="text-gray-500 font-light ml-1">.</span>
-        </a>
+        </Link>
 
         {/* Desktop Nav */}
         <div className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              className="text-sm text-gray-400 hover:text-white transition-colors relative group"
-            >
-              {link.label}
-              <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-primary rounded-full group-hover:w-full transition-all duration-300" />
-            </a>
+            link.isHash ? (
+              <a
+                key={link.href}
+                href={link.href}
+                className="text-sm text-gray-400 hover:text-white transition-colors relative group"
+              >
+                {link.label}
+                <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-primary rounded-full group-hover:w-full transition-all duration-300" />
+              </a>
+            ) : (
+              <Link
+                key={link.href}
+                to={link.href}
+                className="text-sm text-gray-400 hover:text-white transition-colors relative group"
+              >
+                {link.label}
+                <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-primary rounded-full group-hover:w-full transition-all duration-300" />
+              </Link>
+            )
           ))}
           <a
             href="/resume.pdf"
@@ -80,14 +103,25 @@ export default function Navbar() {
           >
             <div className="px-6 py-6 flex flex-col gap-4">
               {navLinks.map((link) => (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  onClick={() => setMobileOpen(false)}
-                  className="text-lg text-gray-300 hover:text-white transition-colors py-2 border-b border-glass-border"
-                >
-                  {link.label}
-                </a>
+                link.isHash ? (
+                  <a
+                    key={link.href}
+                    href={link.href}
+                    onClick={() => setMobileOpen(false)}
+                    className="text-lg text-gray-300 hover:text-white transition-colors py-2 border-b border-glass-border"
+                  >
+                    {link.label}
+                  </a>
+                ) : (
+                  <Link
+                    key={link.href}
+                    to={link.href}
+                    onClick={() => setMobileOpen(false)}
+                    className="text-lg text-gray-300 hover:text-white transition-colors py-2 border-b border-glass-border"
+                  >
+                    {link.label}
+                  </Link>
+                )
               ))}
               <a
                 href="/resume.pdf"

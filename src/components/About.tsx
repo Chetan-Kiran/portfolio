@@ -1,8 +1,5 @@
-"use client";
-
 import { motion } from "framer-motion";
 import CountUp from "react-countup";
-import Image from "next/image";
 
 export default function About() {
   return (
@@ -24,13 +21,11 @@ export default function About() {
                 className="w-full h-full rounded-2xl glass-card overflow-hidden border-2 border-primary/20 p-2 shadow-[0_0_30px_rgba(59,130,246,0.2)] group-hover:shadow-[0_0_50px_rgba(59,130,246,0.4)]"
               >
                 <div className="w-full h-full rounded-xl bg-gradient-to-br from-gray-800 to-black relative overflow-hidden">
-                   <Image
+                   <img
                      src="/chetan-profile.jpg"
                      alt="Chetan Kiran - Software Developer"
-                     fill
-                     className="object-cover object-top"
-                     sizes="(max-width: 768px) 288px, 384px"
-                     priority
+                     className="w-full h-full object-cover object-top"
+                     loading="lazy"
                    />
                    {/* Subtle gradient overlay at bottom */}
                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />

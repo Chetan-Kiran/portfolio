@@ -1,21 +1,27 @@
-"use client";
-
-import dynamic from "next/dynamic";
-import About from "@/components/About";
-import Projects from "@/components/Projects";
-import TechStack from "@/components/TechStack";
-import ContactCTA from "@/components/ContactCTA";
+import React, { Suspense, lazy } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { ArrowDown, Mail, FolderGit2 } from "lucide-react";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
-// Lazy load the 3D component for performance
-const Hero3D = dynamic(() => import("@/components/Hero3D"), { ssr: false });
+// Lazy load components for performance
+const About = lazy(() => import("@/components/About"));
+const Projects = lazy(() => import("@/components/Projects"));
+const TechStack = lazy(() => import("@/components/TechStack"));
+const ContactCTA = lazy(() => import("@/components/ContactCTA"));
+const Hero3D = lazy(() => import("@/components/Hero3D"));
+
+// Loading placeholder
+const SectionLoader = () => (
+  <div className="w-full h-96 flex items-center justify-center">
+    <div className="w-8 h-8 border-2 border-primary/20 border-t-primary rounded-full animate-spin"></div>
+  </div>
+);
 
 export default function Home() {
   return (
-    <main className="min-h-screen selection:bg-primary/30 relative">
+    <div className="min-h-screen selection:bg-primary/30 relative bg-black text-white">
       <div className="fixed inset-0 pointer-events-none z-50 opacity-[0.03]" style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")` }}></div>
 
       {/* Navigation */}
@@ -70,17 +76,19 @@ export default function Home() {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 pt-4">
-              <a href="/projects" className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-primary hover:bg-primary-dark text-white font-bold transition-all shadow-[0_0_20px_rgba(59,130,246,0.3)] hover:shadow-[0_0_30px_rgba(59,130,246,0.5)]">
+              <Link to="/projects" className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-primary hover:bg-primary-dark text-white font-bold transition-all shadow-[0_0_20px_rgba(59,130,246,0.3)] hover:shadow-[0_0_30px_rgba(59,130,246,0.5)]">
                 <FolderGit2 className="w-5 h-5" /> View Projects
-              </a>
+              </Link>
               <a href="#contact" className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-white/5 hover:bg-white/10 text-white font-bold transition-all border border-white/10">
                 <Mail className="w-5 h-5" /> Contact Me
               </a>
             </div>
           </div>
 
-          <div className="relative">
-            <Hero3D />
+          <div className="relative h-[400px] md:h-[600px]">
+            <Suspense fallback={<SectionLoader />}>
+              <Hero3D />
+            </Suspense>
           </div>
         </div>
 
@@ -92,20 +100,28 @@ export default function Home() {
       </section>
 
       {/* SECTION 2 - About */}
-      <About />
+      <Suspense fallback={<SectionLoader />}>
+        <About />
+      </Suspense>
 
       {/* SECTION 3 - Featured Projects */}
-      <Projects />
+      <Suspense fallback={<SectionLoader />}>
+        <Projects />
+      </Suspense>
 
       {/* SECTION 4 - Tech Stack */}
-      <TechStack />
+      <Suspense fallback={<SectionLoader />}>
+        <TechStack />
+      </Suspense>
 
       {/* SECTION 5 - Contact CTA */}
-      <ContactCTA />
+      <Suspense fallback={<SectionLoader />}>
+        <ContactCTA />
+      </Suspense>
 
       {/* Footer */}
       <Footer />
       
-    </main>
+    </div>
   );
 }

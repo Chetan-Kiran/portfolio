@@ -1,8 +1,5 @@
-"use client";
-
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Github, ExternalLink, AlertTriangle, Cpu, ArrowRight } from "lucide-react";
-import Image from "next/image";
 
 interface Milestone {
   year: string;
@@ -37,7 +34,6 @@ export default function ProjectDetailView({
 
   return (
     <AnimatePresence>
-      {/* High z-index overlay */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -69,6 +65,7 @@ export default function ProjectDetailView({
                 <a
                   href={project.github}
                   target="_blank"
+                  rel="noopener noreferrer"
                   className="p-4 bg-white/5 hover:bg-white/10 rounded-2xl border border-white/10 transition-all text-gray-300 hover:text-white"
                 >
                   <Github size={24} />
@@ -76,6 +73,7 @@ export default function ProjectDetailView({
                 <a
                   href={project.live}
                   target="_blank"
+                  rel="noopener noreferrer"
                   className="p-4 bg-white/5 hover:bg-white/10 rounded-2xl border border-white/10 transition-all text-gray-300 hover:text-white"
                 >
                   <ExternalLink size={24} />
@@ -92,11 +90,11 @@ export default function ProjectDetailView({
             <div className="p-8 md:p-12 space-y-20">
               {/* Visual Hero */}
               <div className="relative h-[250px] md:h-[450px] rounded-3xl overflow-hidden border border-white/10 shadow-inner">
-                <Image
+                <img
                   src={project.image}
                   alt={project.title}
-                  fill
-                  className="object-cover"
+                  className="w-full h-full object-cover"
+                  loading="lazy"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-background/60 to-transparent" />
               </div>
